@@ -21,10 +21,10 @@ unsigned long FindMem(DWORD *pStartAddr, DWORD *pEndAddr, const BYTE *bArray, si
 		VirtualQuery( (LPCVOID)dwSearchAddr, &mbi, sizeof(mbi) ); //find next memory block
 		if (mbi.Protect & PAGE_READWRITE) //check mem region characteristics
 		{
-			/* sets search start pointer */
+		/* sets search start pointer */
 			DWORD dwSubSearch = (dwSearchAddr > (DWORD)mbi.BaseAddress) ? dwSearchAddr-(DWORD)mbi.BaseAddress : 0; //for recursive calls
 			dwSearchAddr = (DWORD)mbi.BaseAddress;
-      /* start searching a memory block */
+      		/* start searching a memory block */
 			while (dwSubSearch+size <= mbi.RegionSize)
 			{
 				DWORD dwSubAddr = dwSearchAddr + dwSubSearch;
